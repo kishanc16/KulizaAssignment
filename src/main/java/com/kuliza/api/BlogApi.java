@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.kuliza.blog.BlogServices;
 import com.kuliza.dto.BlogDto;
+import com.kuliza.service.blog.BlogServices;
 
 @RestController
 public class BlogApi {

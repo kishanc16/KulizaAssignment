@@ -1,4 +1,4 @@
-package com.kuliza.blog;
+package com.kuliza.service.blog;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -62,21 +62,23 @@ public class BlogServicesImpl implements BlogServices{
 			throw new UserNotFoundException("Invalid User Id : " + userId);
 		
 		List<BlogEntity> blogList= blogJpaRepository.findAllByUserId(userId);
-		
-		List<ShowBlogMessageDto> showMessage = new ArrayList<ShowBlogMessageDto>();
-		for(int i=0;i<blogList.size();i++)
-		{
-			BlogEntity blogEntity = blogList.get(i);
-			ShowBlogMessageDto message = new ShowBlogMessageDto();
-			message.setUserId(userId);
-			message.setTitle(blogEntity.getTitle());
-			message.setBody(blogEntity.getBody());
-			message.setCreatedBy(blogEntity.getCreatedBy());
-			message.setCreatedAt(blogEntity.getCreatedAt());
-			showMessage.add(message);
-		}		
-		
-		return new ResponseEntity<>(showMessage, HttpStatus.OK);		
+		if(blogList.size() > 0) {
+			List<ShowBlogMessageDto> showMessage = new ArrayList<ShowBlogMessageDto>();
+			for(int i=0;i<blogList.size();i++)
+			{
+				BlogEntity blogEntity = blogList.get(i);
+				ShowBlogMessageDto message = new ShowBlogMessageDto();
+				message.setUserId(userId);
+				message.setTitle(blogEntity.getTitle());
+				message.setBody(blogEntity.getBody());
+				message.setCreatedBy(blogEntity.getCreatedBy());
+				message.setCreatedAt(blogEntity.getCreatedAt());
+				showMessage.add(message);
+			}		
+			
+			return new ResponseEntity<>(showMessage, HttpStatus.OK);	
+		}
+		return new ResponseEntity<>("No any blogs written by "+userEntity.getFirstName(),HttpStatus.BAD_REQUEST);
 	}
 
 }

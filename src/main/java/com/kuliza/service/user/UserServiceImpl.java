@@ -1,4 +1,4 @@
-package com.kuliza.user;
+package com.kuliza.service.user;
 
 import java.util.Date;
 

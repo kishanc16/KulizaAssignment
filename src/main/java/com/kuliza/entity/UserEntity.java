@@ -8,7 +8,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -26,10 +25,10 @@ public class UserEntity {
 	private Long id;
 
 	@NotNull
-	@Column(columnDefinition = "VARCHAR(100)", nullable = false)
+	@Column(columnDefinition = "VARCHAR(100)", nullable = false,name = "firstName")
 	private String firstName;
 
-	@Column(columnDefinition = "VARCHAR(100)", nullable = true)
+	@Column(columnDefinition = "VARCHAR(100)", nullable = true,name = "lastName")
 	private String lastName;
 
 	@NotNull
@@ -45,10 +44,11 @@ public class UserEntity {
 	private String password;
 
 	@CreationTimestamp
+	@Column(name = "createdAt")
 	private Date createdAt;
 	
+	
 	@OneToMany(cascade=CascadeType.ALL)
-	@JoinColumn
 	List<BlogEntity> blogEntity;
 
 	public Date getCreatedAt() {

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kuliza.dto.UserDto;
-import com.kuliza.user.UserService;
+import com.kuliza.service.user.UserService;
 
 /*
  * It is controller class of User

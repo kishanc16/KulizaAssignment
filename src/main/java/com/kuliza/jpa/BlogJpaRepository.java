@@ -13,5 +13,8 @@ public interface BlogJpaRepository extends JpaRepository<BlogEntity,Long> {
 
 	@Query("from Blog where userid=?1")
 	List<BlogEntity> findAllByUserId(long userId);
+	
+	@Query("FROM Blog u WHERE u.blogId =?1")
+	public BlogEntity findOne(long blogId);
 
 }
